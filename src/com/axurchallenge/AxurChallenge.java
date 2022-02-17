@@ -7,9 +7,9 @@ public class AxurChallenge {
 
 	public static void main(String[] args) throws MalformedURLException, IOException {
 		
-		Inspecao ler = new Inspecao();
+		Inspecao verificacao = new Inspecao();
 		
-		ler.analise();
+		verificacao.analise();
 
 	}
 

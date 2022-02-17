@@ -9,13 +9,15 @@ import java.net.URL;
 import java.util.Scanner;
 
 class Inspecao implements ControlesInspecao {
-
+	
 	@Override
-	public void analise() throws MalformedURLException, IOException {
+	public void analise() throws MalformedURLException, IOException{
 		boolean suspicious = false;
 		boolean urlInvalida = false;
 		String urlUsuario;
 		Scanner ler = new Scanner(System.in);
+		ListaRestricoes lista = new ListaRestricoes();
+		lista.listaRestricoes();
 
 		System.out.println("Por favor, insira uma url para inspeção: ");
 		do {
@@ -38,8 +40,10 @@ class Inspecao implements ControlesInspecao {
 
 		while (linha != null) {
 
-			if ((linha.contains("senha")) || (linha.contains("black friday")) || (linha.contains("promoção"))) {
+			for(int x = 0; x < lista.v.length; x++) {
+			if ((linha.contains(lista.v[x]))) {
 				suspicious = true;
+			}
 			}
 			linha = br.readLine();
 		}
@@ -47,7 +51,7 @@ class Inspecao implements ControlesInspecao {
 		if (suspicious == true) {
 			System.out.println("Suspicious - Detectada expressão/palavra suspeita");
 		} else {
-			System.out.println("Safe - Não possui ecpressões suspeitas");
+			System.out.println("Safe - Não possui expressões suspeitas");
 		}
 	}
 
